@@ -1,5 +1,5 @@
 body {
-  background-image: url('../itunes-weekly-project-master/background.jpg');
+  background-image: url('../itunes-weekly-project/background.jpg');
   background-size: cover;
   min-height: 100vh;
   font-family: 'Lato', sans-serif;
@@ -40,9 +40,11 @@ button:hover{
   display: flex;
   flex-direction: column;
   margin: 2em;
+  align-items: center;
+  justify-content: center;
 }
 
-ul{
+.results{
   display: flex;
   list-style: none;
   flex-wrap: wrap;
@@ -50,10 +52,12 @@ ul{
   align-items: center;
 }
 
-li{
-  margin: 4px;
-  padding: 2px;
+h2, h3{
+  margin: 5px;
+  padding: 5px;
+  height: 30px;
 }
+
 h2 {
   margin: 0em 0em;
 }
