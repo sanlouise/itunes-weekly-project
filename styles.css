@@ -36,7 +36,7 @@ button:hover{
 
 .song{
   height: 100%;
-  width: 200px;
+  width: 25%;
   display: flex;
   flex-direction: column;
   margin: 2em;
@@ -52,12 +52,8 @@ button:hover{
   align-items: center;
 }
 
-h2, h3{
+h3{
   margin: 5px;
   padding: 5px;
   height: 30px;
-}
-
-h2 {
-  margin: 0em 0em;
 }
