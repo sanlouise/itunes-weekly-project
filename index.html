@@ -1,24 +1,78 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>iTunes Music Search</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="container">
-    <header>
-      <h1>Really Awesome Music Site</h1>
-    </header>
-    <section class="player">
-      <audio class="music-player" controls="controls" src=""></audio>
-    </section>
-    <section class="search">
-      <form class="search-form">
+  <head>
+    <title>iTunes Music Search</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Really Awesome Lydia's Music Site</h1>
+      </header>
 
-      </form>
-    </section>
-    <section class="results"></section>
-  </div>
-  <script src="main.js"></script>
+      <div class="uppercontent">
+
+        <section class="search">
+
+          <form class="search-form">
+            <input type="text" name="search" placeholder="Search for songs">
+            <button type="submit" name="submit">Search</button>
+          </form>
+
+        </section>
+
+        <section class="player">
+          <audio class="music-player" controls="controls" src=""></audio>
+        </section>
+
+      </div>
+
+      <div class="lowercontent">
+
+        <section class="results">
+          <ul>
+            <div class="song">
+              <li class="title"><h2> Title </h2></li>
+              <li class="band"><h3>Band name</h3></li>
+              <img src="http://via.placeholder.com/200x200" />
+            </div>
+            <div class="song">
+              <li class="title"><h2> Title </h2></li>
+              <li class="band"><h3>Band name</h3></li>
+              <img src="http://via.placeholder.com/200x200" />
+            </div>
+            <div class="song">
+              <li class="title"><h2> Title </h2></li>
+              <li class="band"><h3>Band name</h3></li>
+              <img src="http://via.placeholder.com/200x200" />
+            </div>
+            <div class="song">
+              <li class="title"><h2> Title </h2></li>
+              <li class="band"><h3>Band name</h3></li>
+              <img src="http://via.placeholder.com/200x200" />
+            </div>
+            <div class="song">
+              <li class="title"><h2> Title </h2></li>
+              <li class="band"><h3>Band name</h3></li>
+              <img src="http://via.placeholder.com/200x200" />
+            </div>
+            <div class="song">
+              <li class="title"><h2> Title </h2></li>
+              <li class="band"><h3>Band name</h3></li>
+              <img src="http://via.placeholder.com/200x200" />
+            </div>
+            <div class="song">
+              <li class="title"><h2> Title </h2></li>
+              <li class="band"><h3>Band name</h3></li>
+              <img src="http://via.placeholder.com/200x200" />
+            </div>
+            </div>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>
