@@ -6,10 +6,11 @@ const results = document.querySelector(".results");
 const searchField = document.querySelector(".search-field");
 const searchButton = document.querySelector(".search-button");
 const songsUl = document.querySelector("ul");
-const searchTerm = "beatles";
 
 function fetchData(){
-  let url = `https://itunes.apple.com/search?term=${searchTerm}`
+  let searchTerm = document.querySelector("input").value.replace(" ", "+");
+  let url = `https://itunes.apple.com/search?term=${searchTerm}&limit=25`
+  console.log(searchTerm);
 
   fetch(url)
   .then((response) => response.json())
@@ -24,6 +25,7 @@ function fetchData(){
       artworkUrl.src = data.results[i].artworkUrl100;
       trackName.textContent = data.results[i].trackName;
       artistName.textContent = data.results[i].artistName;
+      musicPlayer.setAttribute("src", "data.results[i].previewUrl");
 
       songLi.appendChild(artworkUrl);
       songLi.appendChild(trackName);
