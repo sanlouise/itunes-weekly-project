@@ -8,9 +8,8 @@ const searchButton = document.querySelector(".search-button");
 const searchTerm = document.querySelector("input")
 const songDivs = document.getElementsByClassName('song')
 
-
 const fetchData = () => {
-  let url = `https://itunes.apple.com/search?term=${searchTerm.value}&limit=25`
+  let url = `https://itunes.apple.com/search?term=${searchTerm.value.replace(' ', '+')}&limit=25`
   clearResults()
   fetch(url)
   .then((response) => response.json())
