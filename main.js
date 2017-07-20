@@ -22,7 +22,11 @@ const fetchData = () => {
       artistName.textContent = data.results[i].artistName
       songDiv.classList.add('song')
       songDiv.addEventListener('click', function() {
-        musicPlayer.setAttribute('src', data.results[i].previewUrl)
+        if (!(data.results[i].trackExplicitness === 'notExplicit')) {
+          if (confirm('This song contains explicit material would you like to continue?')) {
+            musicPlayer.setAttribute('src', data.results[i].previewUrl)
+          }
+        } else musicPlayer.setAttribute('src', data.results[i].previewUrl)
       })
 
       let hoverDiv
@@ -37,11 +41,6 @@ const fetchData = () => {
         hoverDiv.style.backgroundColor = 'hsla(60, 8%, 18%, .7)'
         hoverDiv.style.color = '#ff002d'
         hoverDiv.style.fontSize = '125%'
-
-        songDiv.addEventListener('mousemove', function showCoords(event) {
-          hoverDiv.style.left = event.clientX + 'px'
-          hoverDiv.style.top = event.clientY + 'px'
-        })
 
         songDiv.appendChild(hoverDiv)
       })
