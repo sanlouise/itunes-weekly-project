@@ -8,38 +8,42 @@ const searchTerm = document.querySelector('input')
 const songDivs = document.getElementsByClassName('song')
 
 const fetchData = () => {
-  clearInterval(interval);
+  clearInterval(interval)
   let url = `https://itunes.apple.com/search?term=${searchTerm.value}&limit=32`
   clearResults()
   fetch(url).then(response => response.json()).then(data => {
     for (let i = 0; i < data.results.length; i++) {
+      const songDiv = document.createElement('div')
+      const artworkUrl = document.createElement('img')
+      const trackName = document.createElement('h3')
+      const artistName = document.createElement('h3')
 
-      const songDiv = document.createElement("div");
-      const artworkUrl = document.createElement("img");
-      const trackName = document.createElement("h3");
-      const artistName = document.createElement("h3");
-
-      artworkUrl.src = data.results[i].artworkUrl100;
+      artworkUrl.src = data.results[i].artworkUrl100
 
       if (data.results[i].trackName.length > 30) {
-        trackName.textContent = `${data.results[i].trackName.substring(0, 30)}...`;
+        trackName.textContent = `${data.results[i].trackName.substring(0, 30)}...`
       } else {
-        trackName.textContent = data.results[i].trackName;
+        trackName.textContent = data.results[i].trackName
       }
 
       if (data.results[i].artistName.length > 30) {
-        artistName.textContent = `${data.results[i].artistName.substring(0, 25)}...`;
+        artistName.textContent = `${data.results[i].artistName.substring(0, 25)}...`
       } else {
-        artistName.textContent = data.results[i].artistName;
+        artistName.textContent = data.results[i].artistName
       }
 
       songDiv.classList.add('song')
       songDiv.addEventListener('click', function() {
-        musicPlayer.setAttribute('src', data.results[i].previewUrl)
+        if (data.results[i].trackExplicitness === 'explicit') {
+          if (confirm('This song contains explicit material would you like to continue?')) {
+            musicPlayer.setAttribute('src', data.results[i].previewUrl)
+            musicPlayer.setAttribute('autoplay', true)
+          }
+        } else musicPlayer.setAttribute('src', data.results[i].previewUrl)
         musicPlayer.setAttribute('autoplay', true)
       })
 
-      let hoverDiv;
+      let hoverDiv
       songDiv.addEventListener('mouseover', function() {
         hoverDiv = document.createElement('div')
         hoverDiv.innerHTML = '$' + data.results[i].trackPrice + ' on itunes' + '</br>'
@@ -67,11 +71,11 @@ const fetchData = () => {
   })
 }
 
-function clearResults(){
-  results.textContent = "";
+function clearResults() {
+  results.textContent = ''
 }
 
-searchTerm.addEventListener("input", () => {
-    window.clearInterval(window.interval)
-    window.interval = setInterval(fetchData, 400);
+searchTerm.addEventListener('input', () => {
+  window.clearInterval(window.interval)
+  window.interval = setInterval(fetchData, 400)
 })
