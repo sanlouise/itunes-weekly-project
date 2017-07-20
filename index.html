@@ -4,6 +4,7 @@
     <title>iTunes Music Search</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
+    <script src="jquery-3.2.1.min.js"></script>
   </head>
   <body>
     <div class="container">
@@ -12,19 +13,17 @@
       </header>
 
       <div class="uppercontent">
-
+        
         <section class="search">
 
           <div class="search-form">
             <input type="text" name="search" placeholder="Search for songs">
-            <button type="submit" name="submit" class="search-button">Search</button>
+            <!--<img src="icon.jpg" class="search-button" >-->
           </div>
 
         </section>
 
-        <section class="player">
-          <audio class="music-player" controls="controls" src=""></audio>
-        </section>
+
 
       </div>
 
@@ -33,9 +32,12 @@
         <section class="results">
 
         </section>
-
+        <section class="player">
+          <audio class="music-player" controls="controls" src=""></audio>
+        </section>
       </div>
     </div>
     <script src="main.js"></script>
+
 </body>
 </html>

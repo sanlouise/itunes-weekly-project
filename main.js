@@ -3,14 +3,13 @@ const musicPlayer = document.querySelector(".music-player");
 const search = document.querySelector(".search");
 const searchForm = document.querySelector(".search-form");
 const results = document.querySelector(".results");
-const searchField = document.querySelector(".search-field");
 const searchButton = document.querySelector(".search-button");
 const searchTerm = document.querySelector("input")
 const songDivs = document.getElementsByClassName('song')
 
 
 const fetchData = () => {
-  let url = `https://itunes.apple.com/search?term=${searchTerm.value}&limit=25`
+  let url = `https://itunes.apple.com/search?term=${searchTerm.value}&limit=32`
   clearResults()
   fetch(url)
   .then((response) => response.json())
@@ -38,6 +37,7 @@ const fetchData = () => {
 }
 
 function clearResults(){
-  results.innerHTML = ""
+  results.textContent = ""
 }
-searchButton.addEventListener('click', fetchData);
+
+searchTerm.addEventListener("change", fetchData)
