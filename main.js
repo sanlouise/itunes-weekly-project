@@ -23,8 +23,19 @@ const fetchData = () => {
       const artistName = document.createElement("h3");
 
       artworkUrl.src = data.results[i].artworkUrl100;
-      trackName.textContent = data.results[i].trackName;
-      artistName.textContent = data.results[i].artistName;
+
+      if (data.results[i].trackName.length > 30) {
+        trackName.textContent = `${data.results[i].trackName.substring(0, 30)}...`;
+      } else {
+        trackName.textContent = data.results[i].trackName;
+      }
+
+      if (data.results[i].artistName.length > 30) {
+        artistName.textContent = `${data.results[i].artistName.substring(0, 25)}...`;
+      } else {
+        artistName.textContent = data.results[i].artistName;
+      }
+
       songDiv.classList.add('song')
       songDiv.addEventListener('click', function(){
         musicPlayer.setAttribute('src', data.results[i].previewUrl)
