@@ -9,6 +9,7 @@ const songDivs = document.getElementsByClassName('song')
 
 
 const fetchData = () => {
+  clearInterval(interval);
   let url = `https://itunes.apple.com/search?term=${searchTerm.value}&limit=32`
   clearResults()
   fetch(url)
@@ -27,6 +28,7 @@ const fetchData = () => {
       songDiv.classList.add('song')
       songDiv.addEventListener('click', function(){
         musicPlayer.setAttribute('src', data.results[i].previewUrl)
+        musicPlayer.setAttribute('autoplay', true)
       })
       songDiv.appendChild(trackName);
       songDiv.appendChild(artistName);
@@ -37,7 +39,10 @@ const fetchData = () => {
 }
 
 function clearResults(){
-  results.textContent = ""
+  results.textContent = "";
 }
 
-searchTerm.addEventListener("change", fetchData)
+searchTerm.addEventListener("input", () => {
+    window.clearInterval(window.interval)
+    window.interval = setInterval(fetchData, 400);
+})
