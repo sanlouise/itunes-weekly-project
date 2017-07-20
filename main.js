@@ -8,6 +8,7 @@ const searchTerm = document.querySelector('input')
 const songDivs = document.getElementsByClassName('song')
 
 const fetchData = () => {
+  clearInterval(interval)
   let url = `https://itunes.apple.com/search?term=${searchTerm.value}&limit=32`
   clearResults()
   fetch(url).then(response => response.json()).then(data => {
@@ -18,15 +19,28 @@ const fetchData = () => {
       const artistName = document.createElement('h3')
 
       artworkUrl.src = data.results[i].artworkUrl100
-      trackName.textContent = data.results[i].trackName
-      artistName.textContent = data.results[i].artistName
+
+      if (data.results[i].trackName.length > 30) {
+        trackName.textContent = `${data.results[i].trackName.substring(0, 30)}...`
+      } else {
+        trackName.textContent = data.results[i].trackName
+      }
+
+      if (data.results[i].artistName.length > 30) {
+        artistName.textContent = `${data.results[i].artistName.substring(0, 25)}...`
+      } else {
+        artistName.textContent = data.results[i].artistName
+      }
+
       songDiv.classList.add('song')
       songDiv.addEventListener('click', function() {
-        if (!(data.results[i].trackExplicitness === 'notExplicit')) {
+        if (data.results[i].trackExplicitness !== 'notExplicit') {
           if (confirm('This song contains explicit material would you like to continue?')) {
             musicPlayer.setAttribute('src', data.results[i].previewUrl)
+            musicPlayer.setAttribute('autoplay', true)
           }
         } else musicPlayer.setAttribute('src', data.results[i].previewUrl)
+        musicPlayer.setAttribute('autoplay', true)
       })
 
       let hoverDiv
@@ -60,4 +74,7 @@ function clearResults() {
   results.textContent = ''
 }
 
-searchTerm.addEventListener('change', fetchData)
+searchTerm.addEventListener('input', () => {
+  window.clearInterval(window.interval)
+  window.interval = setInterval(fetchData, 400)
+})
