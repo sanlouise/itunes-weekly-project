@@ -42,7 +42,8 @@ const fetchData = () => {
       let hoverDiv;
       songDiv.addEventListener('mouseover', function() {
         hoverDiv = document.createElement('div')
-        hoverDiv.innerHTML = '$' + data.results[i].trackPrice + '</br>' + ' on itunes'
+        hoverDiv.innerHTML = '$' + data.results[i].trackPrice + ' on itunes' + '</br>'
+        hoverDiv.innerHTML += `${(data.results[i].trackTimeMillis / 60000) % 60}`;
 
         hoverDiv.style.position = 'absolute'
         hoverDiv.style.display = 'block'
@@ -51,11 +52,6 @@ const fetchData = () => {
         hoverDiv.style.backgroundColor = 'hsla(60, 8%, 18%, .7)'
         hoverDiv.style.color = '#ff002d'
         hoverDiv.style.fontSize = '125%'
-
-        songDiv.addEventListener('mousemove', function showCoords(event) {
-          hoverDiv.style.left = event.clientX + 'px'
-          hoverDiv.style.top = event.clientY + 'px'
-        })
 
         songDiv.appendChild(hoverDiv)
       })
